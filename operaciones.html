@@ -672,9 +672,9 @@
     <nav class="nav-container">
       <button id="hamburgerBtn" class="hamburger">&#9776;</button>
       <div class="tabs" id="tabsContainer">
-        <button class="tab active" data-op="suma">Suma llevando</button>
+        <button class="tab" data-op="suma">Suma llevando</button>
         <button class="tab" data-op="resta">Resta llevando</button>
-        <button class="tab" data-op="tabla">Tabla de multiplicar</button>
+        <button class="tab  active" data-op="tabla">Tabla de multiplicar</button>
         <button class="tab" data-op="multiplicacion">
           Multiplicación 1 cifra llevando
         </button>
@@ -4251,7 +4251,7 @@
                };
 
               /* ---------------- L Ó G I C A  I N T E R A C T I V A ---------------- */
-              let currentOpKey = 'suma';
+              let currentOpKey = 'tabla';
               let currentProblem = { a: 0, b: 0, answer: 0 };
 
               const tabs = document.querySelectorAll('.tab');
