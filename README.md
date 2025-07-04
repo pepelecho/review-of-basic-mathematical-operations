@@ -23,7 +23,7 @@ Incluye ejercicios y explicaciones para:
 - Resta llevando  
 - Suma con decimales  
 - Resta con decimales  
-- Suma con sustraendo mayor
+- Resta con sustraendo mayor
 
 ### ✖️➗ Multiplicación y división:
 - Tabla de multiplicar  
@@ -59,3 +59,10 @@ Incluye ejercicios y explicaciones para:
 ---
 
 ## 📁 Estructura del Proyecto | Project Structure
+operaciones.html
+
+## 📝 Licencia | License
+
+Este proyecto es de uso libre para fines educativos. Puedes modificarlo, compartirlo o adaptarlo.  
+This project is free to use for educational purposes. Feel free to modify, share, or adapt it.
+
