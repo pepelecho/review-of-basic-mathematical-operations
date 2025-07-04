@@ -674,7 +674,7 @@
       <div class="tabs" id="tabsContainer">
         <button class="tab" data-op="suma">Suma llevando</button>
         <button class="tab" data-op="resta">Resta llevando</button>
-        <button class="tab  active" data-op="tabla">Tabla de multiplicar</button>
+        <button class="tab active" data-op="tabla">Tabla de multiplicar</button>
         <button class="tab" data-op="multiplicacion">
           Multiplicación 1 cifra llevando
         </button>
@@ -4250,30 +4250,31 @@
 
                };
 
-              /* ---------------- L Ó G I C A  I N T E R A C T I V A ---------------- */
-              let currentOpKey = 'tabla';
-              let currentProblem = { a: 0, b: 0, answer: 0 };
+               /* ---------------- L Ó G I C A  I N T E R A C T I V A ---------------- */
+               let currentOpKey = 'tabla';
+               let currentProblem = { a: 0, b: 0, answer: 0 };
 
-              const tabs = document.querySelectorAll('.tab');
-              const instructionSec = document.getElementById('instruction');
-              const problemEl = document.getElementById('problem');
-              const answerInput = document.getElementById('answerInput');
-              const feedbackEl = document.getElementById('feedback');
-              const checkBtn = document.getElementById('checkBtn');
-              const newBtn = document.getElementById('newBtn');
+               const tabs = document.querySelectorAll('.tab');
+               const instructionSec = document.getElementById('instruction');
+               const problemEl = document.getElementById('problem');
+               const answerInput = document.getElementById('answerInput');
+               const feedbackEl = document.getElementById('feedback');
+               const checkBtn = document.getElementById('checkBtn');
+               const newBtn = document.getElementById('newBtn');
 
-              const isFractionOp = () => currentOpKey.endsWith('Fracciones');
+               const isFractionOp = () => currentOpKey.endsWith('Fracciones');
 
 
 
-              tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                  tabs.forEach(t => t.classList.remove('active'));
-                  tab.classList.add('active');
-                  currentOpKey = tab.dataset.op;
-                  loadOperation();          // ← solo aquí provocará desplazamiento
-                });
-              });
+               /* Cambia de pestaña */
+               tabs.forEach(tab => {
+               tab.addEventListener('click', () => {
+               tabs.forEach(t => t.classList.remove('active'));
+               tab.classList.add('active');
+               currentOpKey = tab.dataset.op;
+               loadOperation();
+               });
+               });
 
 
                function formatNumberES(n) {
@@ -4330,52 +4331,31 @@
                return `<span class="frac"><span class="top">${n}</span><span class="bottom">${d}</span></span>`;
                }
 
+               /* ─────────── utilidades ─────────── */
 
-              /* --------------- CONTROL DEL SCROLL --------------- */
-              let firstLoad = true;
+               let firstLoad = true;
 
-              function loadOperation() {
-                const op = OPERATIONS[currentOpKey];
+               function loadOperation() {
+               const op = OPERATIONS[currentOpKey];
 
-                instructionSec.innerHTML = op.instructions;
-                generateProblem();
-                feedbackEl.textContent = '';
+               instructionSec.innerHTML = op.instructions;
+               generateProblem();
+               feedbackEl.textContent = '';
 
-                const doScroll = !firstLoad;    // solo true a partir de la 2.ª vez
-                firstLoad = false;
+               const doScroll = !firstLoad;
+               firstLoad = false;
 
-                if (doScroll) {
-                  // Al cambiar de pestaña: scroll suave hasta las instrucciones
-                  instructionSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                  // Primera carga: nos aseguramos de quedarnos arriba
-                  window.scrollTo({ top: 0, left: 0 });
-                }
+               if (doScroll) {
+               instructionSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+               }
 
-                setTimeout(() => {
-                  const target = currentOpKey.endsWith('Fracciones')
-                    ? document.getElementById('inputNum')
-                    : answerInput;
-                  focusSinScroll(target);   // → sin mover la página
-                }, doScroll ? 120 : 0);
-              }
-
-              /* Focus que NO desplaza la página */
-              function focusSinScroll(el) {
-                if (!el) return;
-                if (el.focus) {
-                  // Navegadores que aceptan preventScroll
-                  try {
-                    el.focus({ preventScroll: true });
-                    return;
-                  } catch (_) { /* Safari antiguo, por ejemplo */ }
-                }
-                // Fallback: recuerda posición, hace focus y la restaura
-                const { scrollX, scrollY } = window;
-                el.focus();
-                window.scrollTo(scrollX, scrollY);
-              }
-
+               setTimeout(() => {
+               const target = currentOpKey.endsWith('Fracciones')
+               	  ? document.getElementById('inputNum')
+               	  : answerInput;
+               focusSinScroll(target);
+               }, doScroll ? 120 : 0);
+               }
                /* Genera enunciado aleatorio */
       function generateProblem() {
         const op = OPERATIONS[currentOpKey];
