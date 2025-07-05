@@ -53,7 +53,7 @@ Incluye ejercicios y explicaciones para:
 ## 🚀 Cómo usar | How to Use
 
 1. Descarga o clona este repositorio.
-2. Abre el archivo `index.html` con tu navegador.
+2. Abre el archivo `operaciones.html` con tu navegador.
 3. ¡Listo! Puedes empezar a practicar matemáticas sin conexión.
 
 ---
