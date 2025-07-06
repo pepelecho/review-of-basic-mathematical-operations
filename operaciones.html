@@ -804,7 +804,8 @@
                /* ------ T A B L A   D E   M U L T I P L I C A R ------ */
                tabla: {
                label: 'Tabla de multiplicar', symbol: '&times;',
-               generate: () => [rand(1, 10), rand(1, 10)],
+               /* generate: () => [rand(6, 8), rand(6, 8)], */
+                generate: () => [rand(1, 10), rand(1, 10)], 
                calc: (a, b) => a * b,
                instructions: `
                			 <h2>Tabla de multiplicar</h2>
@@ -2948,7 +2949,8 @@
                division: {
                label: 'División de 1 cifra', symbol: '&#247;',
                generate: () => [rand(100, 999), rand(2, 9)],
-               calc: (a, b) => a / b,
+calc: (a, b) => Math.floor(a / b),
+
                instructions: `
                <h2>División entre una cifra</h2>
                <ol style="margin-bottom: 0em !important;">
@@ -3188,7 +3190,8 @@
                	  const divisor = Math.random() < 0.2 ? rand(100, 999) : rand(10, 99);
                	  return [dividendo, divisor];
                },
-               calc: (a, b) => a / b,
+calc: (a, b) => Math.floor(a / b),
+
                instructions: `
                <h2>División entre dos o más cifras</h2>
                <ol style="margin-bottom: 0em !important;">
@@ -3571,7 +3574,8 @@
                	  const quotient = rand(-10, 10);
                	  return [divisor * quotient, divisor]; // aseguro que sea exacta
                },
-               calc: (a, b) => a / b,
+calc: (a, b) => Math.floor(a / b),
+
                instructions: `
                	                   <h2>División de números enteros</h2>
 
