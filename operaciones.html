@@ -3838,32 +3838,37 @@
                                        },
 
 
-                                       /* -------- D I V I S I Ó N  D E C I M A L E S -------- */
-                                       divisionDecimales: {
-                                       label: 'División con decimales', symbol: '&#247;',
-                                       	generate: () => {
-                                       	const randomChance = Math.floor(Math.random() * 5); // 0 a 4
-                                       	let divisor, dividendo;
 
-                                       	if (randomChance === 0) {
-                                       		// Caso especial: 1 de cada 5 veces
-                                       		const decimals = Math.random() < 0.5 ? 2 : 3;
-                                       		divisor = +(Math.random() * 8 + 1).toFixed(decimals);
+                                      /* -------- D I V I S I Ó N  D E C I M A L E S -------- */
+                                      divisionDecimales: {
+                                        label: 'División con decimales', symbol: '&#247;',
+                                        generate: () => {
+                                          const soloDividendo = Math.floor(Math.random() * 5) === 0; // 1 de cada 5
+                                          const soloDivisor = Math.floor(Math.random() * 6) === 0;   // 1 de cada 6
 
-                                       		// 50% de las veces también aumenta la precisión del dividendo
-                                       		dividendo = Math.random() < 0.5
-                                       		? +(Math.random() * 90 + 10).toFixed(decimals)
-                                       		: +(Math.random() * 90 + 10).toFixed(2);
-                                       	} else {
-                                       		// Caso normal
-                                       		divisor = +(Math.random() * 8 + 1).toFixed(1);
-                                       		dividendo = +(Math.random() * 90 + 10).toFixed(2);
-                                       	}
+                                          let divisor, dividendo;
 
-                                       	return [dividendo, divisor];
-                                       	},
+                                          if (soloDividendo) {
+                                            // Decimal solo en el dividendo
+                                            divisor = Math.floor(Math.random() * 8 + 1); // entero entre 1 y 8
+                                            const decimals = Math.random() < 0.5 ? 2 : 3;
+                                            dividendo = +(Math.random() * 90 + 10).toFixed(decimals);
+                                          } else if (soloDivisor) {
+                                            // Decimal solo en el divisor
+                                            dividendo = Math.floor(Math.random() * 90 + 10); // entero entre 10 y 99
+                                            const decimals = Math.random() < 0.5 ? 1 : 2;
+                                            divisor = +(Math.random() * 8 + 1).toFixed(decimals);
+                                          } else {
+                                            // Ambos pueden tener decimales
+                                            divisor = +(Math.random() * 8 + 1).toFixed(1);
+                                            dividendo = +(Math.random() * 90 + 10).toFixed(2);
+                                          }
 
-                                       	calc: (a, b) => +(a / b).toFixed(4),
+                                          return [dividendo, divisor];
+                                        },
+
+                                        calc: (a, b) => +(a / b).toFixed(4),
+
 
                                        instructions: `
 
